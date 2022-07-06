@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <title>CT Demo-Saif</title>
+    <script type="text/javascript">
+     var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
+ // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
+clevertap.account.push({"id": "6K9-K85-456Z"});
+clevertap.privacy.push({optOut: false}); //set the flag to true, if the user of the device opts out of sharing their data
+clevertap.privacy.push({useIP: false}); //set the flag to true, if the user agrees to share their IP data
+ (function () {
+         var wzrk = document.createElement('script');
+         wzrk.type = 'text/javascript';
+         wzrk.async = true;
+         wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
+         var s = document.getElementsByTagName('script')[0];
+         s.parentNode.insertBefore(wzrk, s);
+  })();
+  
+    clevertap.notifications.push({
+    "titleText":'Would you like to receive Push Notifications?',
+    "bodyText":'We promise to only send you relevant content and give you updates on your transactions',
+    "okButtonText":'Sign me up',
+    "rejectButtonText":'No thanks',
+    // "askAgainTimeInSeconds" : 3,
+    "okButtonColor":'#778046'});
+
+  function Login()
+  {
+        var name=document.getElementById("name").value;
+        var email=document.getElementById("email").value;
+        var pn=document.getElementById("mobile").value;
+        
+
+
+clevertap.onUserLogin.push({
+ "Site": {
+   "Name": name,           
+   "Identity": 1234,            
+   "Email": email,        
+   "Phone": "+91"+pn,          
+   "Gender": "M",                     
+   "DOB": new Date(),                 
+
+ }
+});
+alert ("Login Successfully");
+  }
+function PP()
+{
+    clevertap.profile.push({
+ "Site": {
+   "Name": "Saif Khan",            
+   "Address" : "Sakinaka"  ,       
+   "Movie name" :"DON"  ,      
+   "Phone": "+910987654321",           
+   "Gender": "M",                     
+   "DOB": new Date(),  
+
+ }
+});
+alert ("Profile is created Successfully");
+    
+}
+function Event()
+{
+    clevertap.event.push("Product Viewed", {
+  "Product name":"Casio Chronograph Watch",
+  "Category":"Mens Accessories",
+  "Price":59.99,
+})
+
+alert ("Event is Raised");
+}
+// function notify()
+// {
+//     clevertap.notifications.push({
+//     "titleText":'Would you like to receive Push Notifications?',
+//     "bodyText":'We promise to only send you relevant content and give you updates on your transactions',
+//     "okButtonText":'Sign me up',
+//     "rejectButtonText":'No thanks',
+//     "okButtonColor":'#778046'});
+// }
+
+function Event1()
+{
+   clevertap.event.push("Event1");
+}
+function Event2()
+{
+    clevertap.event.push("Event2");
+}
+
+</script>
+      <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBmzeW3fT1WJKhx-2ZAMdEPHYU5dzt2Ixw",
+    authDomain: "ct-demo-saif-60f5b.firebaseapp.com",
+    projectId: "ct-demo-saif-60f5b",
+    storageBucket: "ct-demo-saif-60f5b.appspot.com",
+    messagingSenderId: "140060005712",
+    appId: "1:140060005712:web:db101c6892127d886ac855",
+    measurementId: "G-H9JGYB9W9Y"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Create Account</h2>
+        </div>
+        <form id="form" class="user-form">
+            <div class="form-control">
+                <label for="username">Username :</label>
+                <input class="username-input" type="text" placeholder="Enter the username" id ="name"/>  
+                
+            </div>
+            <div class="form-control">
+                <label for="email">Email :</label>
+                <input type="email" placeholder="Email Address" class="email-input" id ="email"/>
+                
+            </div>
+            <div class="form-control">
+                <label for="phNumber">Phonenumber :</label>
+                <input class="phNumber-input" type="number" placeholder="Mobile number" id ="mobile"/>
+                
+            </div>
+            <div class="form-control">
+                <label for="dob">Date of Birth :</label>
+                <input class="dob-input" type="date"/>
+                
+            </div>
+            <button class="login-button" onClick="Login()">Login</button>
+        </form>
+        <button class="profile-push-button" onClick="PP()">Profile Push</button>
+        <button class="raise-event-button" onClick="Event()">Raise Event</button>
+        <button class="firebase" onClick="notify()">notify</button>
+        <div>
+        <button class="Event1" onClick="Event1()">Event1</button>
+        <button class="Event2" onClick="Event2()">Event2</button>
+        </div>
+    </div>
+    
+        
+
+</body>
+</html>
